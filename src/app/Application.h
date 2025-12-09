@@ -204,6 +204,12 @@ public:
      */
     const Mesh& getBlendMesh(int index) const { return blendMeshes[index]; }
 
+    /**
+     * @brief Get weight controller instance
+     * @return Reference to weight controller
+     */
+    WeightController& getWeightController() { return weightController; }
+
 private:
     /**
      * @brief Ensure meshWeights vector has correct size

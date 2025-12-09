@@ -88,20 +88,21 @@ public:
      */
     const std::vector<Eigen::Vector3d>& getControlPoints() const;
 
-private:
     /**
-     * @brief 2D Mean Value Coordinates algorithm
+     * @brief 2D Mean Value Coordinates algorithm (PUBLIC for GUI access)
      *
      * Ported from weightController.cpp lines 38-83.
      * Computes barycentric coordinates for a point inside a 2D polygon.
+     * Also supports extrapolation when point is outside the polygon.
      *
      * @param loc Query point in 2D
      * @param vertices Polygon vertices in 2D (assumed to form a closed loop)
-     * @return Weights for each vertex (sum to 1.0)
+     * @return Weights for each vertex (inside: sum to 1.0, outside: can be negative)
      */
     std::vector<double> computeMVC2D(
         const Eigen::Vector2d& loc,
         const std::vector<Eigen::Vector2d>& vertices);
 
+private:
     std::vector<Eigen::Vector3d> controlPoints;  ///< Control point positions
 };
