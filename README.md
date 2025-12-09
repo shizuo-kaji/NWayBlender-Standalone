@@ -1,18 +1,7 @@
-# N-Way Blender - Standalone Application
+# N-Way Blender (WIP)
 
-Standalone C++ application for N-way mesh blending using libigl and Polyscope. Ported from the Maya plugin to be independent of proprietary 3D software.
-
-## Features
-
-- Load multiple meshes (OBJ, PLY formats)
-- N-way shape interpolation with multiple blending modes
-- ARAP (As-Rigid-As-Possible) deformation
-- Weight controller using barycentric coordinates
-- Energy visualization
-- Real-time preview
-- Export blended meshes
-
-## Requirements
+Standalone C++ application for N-way mesh blending using libigl and Polyscope.
+Ported from the [Maya plugin](https://github.com/shizuo-kaji/NWayBlenderMaya) to be independent of proprietary 3D software.
 
 ### Dependencies
 
@@ -22,12 +11,6 @@ Standalone C++ application for N-way mesh blending using libigl and Polyscope. P
 - **libigl** (included as submodule or installed separately)
 - **Polyscope** (included as submodule or installed separately)
 - **OpenMP** (optional, for parallelization)
-
-### Platform Support
-
-- macOS (tested)
-- Linux (should work)
-- Windows (should work with MSVC)
 
 ## Installation
 
@@ -152,65 +135,6 @@ After building, try this:
 
 **Visualize Energy**: Show deformation energy as vertex colors (red = high energy)
 
-## Implementation Status
-
-### Phase 1: Foundation ✅ COMPLETE
-
-- [x] Project structure
-- [x] CMake build system
-- [x] Core algorithm headers (affinelib, blendAff, tetrise, laplacian, distance)
-- [x] Mesh data structure with libigl I/O
-- [x] Application state management
-- [x] Basic Polyscope visualization
-- [x] Mesh loading from command line
-
-### Phase 2: Core Blending ✅ COMPLETE
-
-- [x] NWayBlender engine
-  - [x] Tetrahedral structure initialization
-  - [x] Blend mesh parametrization
-  - [x] Rotation consistency
-  - [x] Matrix blending computation
-- [x] ARAP integration
-  - [x] Solver setup
-  - [x] Iterative solving
-- [x] Blend modes
-  - [x] BM_SRL (Shear-Rotation-Linear)
-  - [x] BM_LOG3 (3D matrix logarithm)
-  - [x] BM_LOG4 (4D matrix logarithm)
-  - [x] BM_SQL (Quaternion-based)
-  - [x] BM_SSE (Special Similarity Euclidean)
-  - [x] BM_SlRL (Linear scale + rotation)
-  - [x] BM_AFF (Direct affine)
-- [x] Energy computation
-- [x] Interactive UI with weight sliders
-- [x] Real-time blending
-
-### Phase 3: UI (TODO)
-
-- [ ] File dialogs for mesh loading
-- [ ] Dynamic weight sliders
-- [ ] Blend mode dropdown
-- [ ] Tet mode dropdown
-- [ ] Parameter controls
-- [ ] Mesh visibility toggles
-- [ ] Energy visualization
-- [ ] Export functionality
-
-### Phase 4: Weight Controller (TODO)
-
-- [ ] 2D Mean Value Coordinates
-- [ ] Control point placement
-- [ ] Control point visualization
-- [ ] Automatic weight computation
-
-### Phase 5: Polish (TODO)
-
-- [ ] Performance optimization
-- [ ] Bug fixes
-- [ ] Documentation
-- [ ] Example meshes
-
 ## Architecture
 
 ```
@@ -269,29 +193,6 @@ MIT License (same as original Maya plugin)
 
 - Original Maya plugin by Shizuo KAJI
 - Standalone port: 2025
-- Uses Eigen, libigl, and Polyscope libraries
-
-## Troubleshooting
-
-### Build Errors
-
-**"Eigen3 not found"**
-```bash
-# macOS
-brew install eigen
-
-# Specify location manually
-cmake -DEigen3_DIR=/usr/local/share/eigen3/cmake ..
-```
-
-**"libigl not found"**
-```bash
-cd external
-git clone https://github.com/libigl/libigl.git
-cd ..
-mkdir build && cd build
-cmake ..
-```
 
 ### Runtime Errors
 
@@ -303,38 +204,3 @@ cmake ..
 **"Mesh topology doesn't match"**
 - All blend meshes must have identical vertex/face counts as base mesh
 - Ensure meshes are in correspondence
-
-## TODO for Future Versions
-
-- [ ] GPU acceleration for ARAP solver
-- [ ] Keyframe animation support
-- [ ] Mesh editing within the application
-- [ ] Python bindings
-- [ ] Web-based version using WebAssembly
-
-## Development
-
-### Running Tests
-
-```bash
-cd build
-ctest
-```
-
-### Code Style
-
-- C++14
-- 4-space indentation
-- Follow existing code conventions
-
-### Contributing
-
-Contributions welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## Contact
-
-For questions or issues, please open a GitHub issue.
